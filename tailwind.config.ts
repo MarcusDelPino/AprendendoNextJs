@@ -7,6 +7,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/basics/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist:[
+    {
+      pattern:/^grid-cols-/,
+      variants: ['sm', 'md', 'lg', 'xl', '2xl'],
+    }
+  ],
   theme: {
     extend: {
       backgroundImage: {
