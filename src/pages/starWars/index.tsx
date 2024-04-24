@@ -1,25 +1,24 @@
 import BackGround from "@/basics/starWars/BackGround";
-import Personagem from "@/basics/starWars/Personagem";
+import FilmesApi from "@/basics/starWars/Filmes";
 import PersonagemApi from "@/basics/starWars/PersonagemApi";
 import useStarWars from "@/data/hooks/useStarWars";
 
 export default function PageStarWars() {
-  const { personagens, obterPersonagens, processando, tres } = useStarWars();
+  const { personagens, processando, selecionarPersonagem, movie, filme, voltar } = useStarWars();
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center h-screen relative">
       <BackGround />
 
       {processando ? (
-        <div>{tres}</div>
+        <div>Processando</div>
+      ) : filme.length > 0 ? (
+        <FilmesApi filmes={filme} voltar={voltar}/>
       ) : personagens.length > 0 ? (
-        <PersonagemApi personagens={personagens} />
+        <PersonagemApi personagens={personagens} selecionar={selecionarPersonagem}/>
       ) : (
         <div className="flex flex-col justify-center items-center gap-3">
           <h1>Nenhum personagem encontrado</h1>
-          <button className="botao" onClick={obterPersonagens}>
-            Obter
-          </button>
         </div>
       )}
     </div>
